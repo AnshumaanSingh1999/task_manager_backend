@@ -18,17 +18,7 @@ app.get("/", (req,res)=>{
     res.json("API is LIVE!")
 })
 
-// app.get("/books",(req,res)=>{
-//     const q="select * from book_data"
-//     db.query(q,(err,data)=>{
-//         if(err){
-//             return res.json(err)
-//         }
-//         else if(data){
-//             return res.json(data)
-//         }
-//     })
-// })
+
 
 app.post("/signup",(req,res)=>{
     const q="insert into users_db (Username,Password) values (?)"
@@ -47,21 +37,7 @@ app.post("/signup",(req,res)=>{
 })
 
 
-// app.post("/update_book",(req,res)=>{
-//     const q="update book_data set book_name=?,book_description=?,book_author=? where book_id=?"
-//     const value=[req.body.book_name,
-//         req.body.book_description,
-//         req.body.book_author,
-//         req.body.book_id]
-//     db.query(q,[...value],(err,data)=>{
-//         if(err){
-//             return res.json(err)
-//         }
-//         else if(data){
-//             return res.json("Book Updated")
-//         }
-//     })
-// })
+
 
 
 
@@ -83,18 +59,7 @@ app.post("/signin",(req,res)=>{
 })
 
 
-// app.post("/delete_book",(req,res)=>{
-//     const q="delete from book_data where book_id=?"
-//     const value=[req.body.book_id]
-//     db.query(q,[value],(err,data)=>{
-//         if(err){
-//             return res.json(err)
-//         }
-//         else if(data){
-//             return res.json("Book Deleted")
-//         }
-//     })
-// })
+
 
 
 

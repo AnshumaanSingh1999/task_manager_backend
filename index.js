@@ -29,6 +29,7 @@ app.post("/signup",(req,res)=>{
     db.query(q,[value],(err,data)=>{
         if(err){
             return res.json(err)
+
         }
         else if(data){
             return res.json("User Added")
@@ -53,7 +54,65 @@ app.post("/signin",(req,res)=>{
             return res.json(err)
         }
         else if(data){
+            console.log(data)
             return res.json(data)
+        }
+    })
+})
+
+
+
+app.post("/addtask",(req,res)=>{
+    const q="insert into tasks (UserID, Task, Status) values (?)"
+    const value=[
+        req.body.UserID=String(req.body.UserID),
+        req.body.Task=String(req.body.Task),
+        req.body.Status=String(req.body.Status),
+    ]
+    db.query(q,[value],(err,data)=>{
+        if(err){
+            return res.json(err)
+        }
+        else if(data){
+            return res.json("Task Added")
+        }
+    })
+})
+
+
+
+
+app.post("/updatetask",(req,res)=>{
+    const q="update tasks set Task=?, Status=? where UserID=? and TaskID=?"
+    const value=[
+        req.body.Task=String(req.body.Task),
+        req.body.Status=String(req.body.Status),
+        req.body.UserID=String(req.body.UserID),
+        req.body.TaskID=String(req.body.TaskID),
+    ]
+    db.query(q,[...value],(err,data)=>{
+        if(err){
+            return res.json(err)
+        }
+        else if(data){
+            return res.json("Task Updated")
+        }
+    })
+})
+
+
+app.post("/deletetask",(req,res)=>{
+    const q="delete from tasks where UserID=? and TaskID=?"
+    const value=[
+        req.body.UserID=String(req.body.UserID),
+        req.body.TaskID=String(req.body.TaskID),
+    ]
+    db.query(q,[...value],(err,data)=>{
+        if(err){
+            return res.json(err)
+        }
+        else if(data){
+            return res.json("Task Deleted")
         }
     })
 })

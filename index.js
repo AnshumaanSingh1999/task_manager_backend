@@ -30,8 +30,10 @@ app.post("/signup",(req,res)=>{
         if(err){
             return res.json(err)
 
+
         }
         else if(data){
+
             return res.json("User Added")
         }
     })
@@ -113,6 +115,24 @@ app.post("/deletetask",(req,res)=>{
         }
         else if(data){
             return res.json("Task Deleted")
+        }
+    })
+})
+
+
+app.get("/tasks:UserID",(req,res)=>{
+    const value=String(req.params.UserID)
+
+    const q="select * from tasks where UserID=?"
+    db.query(q,[value],(err,data)=>{
+        if(err){
+            return res.json(err)
+
+        }
+        else if(data){
+            console.log(data)
+
+            return res.json(data)
         }
     })
 })
